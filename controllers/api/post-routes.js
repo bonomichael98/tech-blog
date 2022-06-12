@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Router } = require('express');
-const sequelize = require('../../config/connection');
+const sequelize = require('../../config/config');
 //Tags added to the below variable
 const { Post, User } = require('../../models');
 
@@ -64,7 +64,6 @@ router.post('/', (req, res) => {
     Post.create({
         title: req.body.title,
         post_body: req.body.post_body,
-        ingredients: req.body.ingredients,
         user_id: req.session.user_id
     })
     .then(dbPostData => res.json(dbPostData))
@@ -80,7 +79,6 @@ router.put('/:id', (req, res) => {
         {
         title: req.body.title,
         post_body: req.body.post_body,
-        ingredients: req.body.ingredients
         },
         {
         where:{
