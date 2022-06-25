@@ -7,8 +7,7 @@ router.get('/', async (req, res) => {
         'id',
         'title',
         'post_body',
-        'user_id',
-        'created_at'
+        'user_id'
     ],
     include : [
         {
@@ -17,8 +16,8 @@ router.get('/', async (req, res) => {
         }
     ]
   })
-  .then(dbPostData => {
-    const posts = dbPostData.map(post => post.get({ plain: true }));
+  .then(postData => {
+    const posts = postData.map(post => post.get({ plain: true }));
 
     res.render('homepage', { posts });
   })
@@ -27,6 +26,7 @@ router.get('/', async (req, res) => {
     res.status(500).json
   })
 });
+
 router.get('/post/:id', (req, res) => {
   Post.findOne({
     where: {
@@ -46,13 +46,13 @@ router.get('/post/:id', (req, res) => {
         }
     ]
 })
-  .then(dbPostData => {
-    if (!dbPostData) {
+  .then(postData => {
+    if (!postData) {
       res.status(404).json({ message: 'No post found with this id' });
       return;
     }
 
-    const post = dbPostData.get({ plain: true });
+    const post = postData.get({ plain: true });
 
     res.render('single-post', {
       post,
@@ -63,7 +63,7 @@ router.get('/post/:id', (req, res) => {
     console.log(err);
     res.status(500).json(err);
   });
-})
+});
 
 
 router.get('/login', (req, res) => {
@@ -76,10 +76,10 @@ router.get('/login', (req, res) => {
 
 router.get('/signup', (req,res) => {
   res.render('signup')
-})
+});
 
-router.get('/new-post', (req,res) => {
-  res.render('add-post')
+router.get('/dashboard', (req,res) => {
+  res.render('dashboard')
 });
 
 module.exports = router;

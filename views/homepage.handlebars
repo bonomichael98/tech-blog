@@ -1,0 +1,15 @@
+<ul class="post-list">
+
+{{#each posts as |post|}}
+    <li>
+        <article class="post">
+            <div class="meta text-center">
+                Posted by {{post.user.username}}
+            </div>
+            <div class="title text-center">
+                <a class="section-heading mb-4 post-title" href="/post/{{id}}" target="_blank">{{post.title}}</a>
+            </div>
+        </article>
+    </li>
+{{/each}}
+</ul>

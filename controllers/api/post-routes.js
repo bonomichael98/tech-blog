@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
             'title',
             'post_body',
             'user_id',
-            'created_at'
         ],
         include : [
             {
@@ -22,12 +21,12 @@ router.get('/', (req, res) => {
             }
         ]
     })
-    .then(dbPostData => res.json(dbPostData))
+    .then(postData => res.json(postData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     })
-})
+});
 
 router.get('/:id', (req,res) => {
     Post.findOne({
@@ -39,7 +38,6 @@ router.get('/:id', (req,res) => {
             'title',
             'post_body',
             'user_id',
-            'created_at'
         ],
         include : [
             {
@@ -48,17 +46,17 @@ router.get('/:id', (req,res) => {
             }
         ]
     })
-    .then(dbPostData =>{ 
-        if (!dbPostData) {
-            res.status(404).json({ message: 'No post found with this id. '})
+    .then(postData =>{ 
+        if (!postData) {
+            res.status(404).json({ message: 'No post found'})
             return;
         }
-        res.json(dbPostData)})
+        res.json(postData)})
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     })
-})
+});
 
 router.post('/', (req, res) => {
     Post.create({
@@ -66,12 +64,12 @@ router.post('/', (req, res) => {
         post_body: req.body.post_body,
         user_id: req.session.user_id
     })
-    .then(dbPostData => res.json(dbPostData))
+    .then(postData => res.json(postData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
-})
+});
 
 
 router.put('/:id', (req, res) => {
@@ -86,16 +84,16 @@ router.put('/:id', (req, res) => {
         },
 
     })
-    .then(dbPostData =>{ 
-        if (!dbPostData) {
+    .then(postData =>{ 
+        if (!postData) {
             res.status(404).json({ message: 'No post found with this id. '})
             return;
         }
-        res.json(dbPostData)})
+        res.json(postData)})
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     })
-})
+});
 
 module.exports = router;

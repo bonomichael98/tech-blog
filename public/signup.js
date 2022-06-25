@@ -1,4 +1,3 @@
-
 async function signupFormHandler(event) {
     event.preventDefault()
     console.log('click')
@@ -25,5 +24,6 @@ async function signupFormHandler(event) {
             alert(response.statusText);
         };
     };
-}
+};
+
 document.querySelector('.login-signup-btn').addEventListener('click', signupFormHandler);
