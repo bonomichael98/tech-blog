@@ -8,5 +8,8 @@ This site uses bcrypt, sequelize, dotenv, express, express-handlebars, mysql2, a
 Tech-Blog allows a user to create an account, store their information to the server and encrypt their password with bcrypt, and create posts on the dashboard which appear on the home screen of the page.
 
 ## 04 Links
+[https://tech-blog-bono.herokuapp.com/](Deployed application)
+[https://github.com/bonomichael98/tech-blog](Repository)
 
 ## 05 Screenshots
+[https://imgur.com/WmfyZPX]
